@@ -1,0 +1,96 @@
+version: "3.9"
+
+networks:
+  crediya-net:
+    driver: bridge
+
+services:
+  dbusuarios:
+    image: postgres:17
+    container_name: crediya-dbusers
+    restart: always
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      POSTGRES_DB: ${POSTGRES_DB}
+    ports:
+      - "${DB_PORT}:5432"
+    networks:
+      - crediya-net
+    healthcheck:
+      test: [ "CMD-SHELL", "pg_isready -U ${POSTGRES_USER} -p 5432" ]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    volumes:
+      - ./init/users.sql:/docker-entrypoint-initdb.d/users.sql
+
+  dbsolicitud:
+    image: postgres:17
+    container_name: crediya-dbsolicitud
+    restart: always
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      POSTGRES_DB: ${POSTGRES_DB2}
+    ports:
+      - "${DB_PORT2}:5432"
+    networks:
+      - crediya-net
+    healthcheck:
+      test: [ "CMD-SHELL", "pg_isready -U ${POSTGRES_USER} -p 5432" ]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    volumes:
+      - ./init/solicitudes.sql:/docker-entrypoint-initdb.d/solicitudes.sql
+
+  usuarios-service:
+    build:
+      context: ../registrar-usuarios-crediYA
+      dockerfile: deployment/Dockerfile
+    container_name: usuarios-service
+    restart: always
+    environment:
+      SPRING_PROFILES_ACTIVE: local
+      adapters.r2dbc.host: dbusuarios
+      adapters.r2dbc.port: 5432
+      adapters.r2dbc.database: ${POSTGRES_DB}
+      adapters.r2dbc.schema: public
+      adapters.r2dbc.username: ${POSTGRES_USER}
+      adapters.r2dbc.password: ${POSTGRES_PASSWORD}
+    depends_on:
+      dbusuarios:
+        condition: service_healthy
+    ports:
+      - "${USUARIOS_PORT}:8081"
+    networks:
+      - crediya-net
+
+  solicitudes-service:
+    build:
+      context: ../registrar-solicitud-crediya
+      dockerfile: deployment/Dockerfile
+    container_name: solicitudes-service
+    restart: always
+    environment:
+      SPRING_PROFILES_ACTIVE: local
+      adapters.r2dbc.host: dbsolicitud
+      adapters.r2dbc.port: 5432
+      adapters.r2dbc.database: ${POSTGRES_DB2}
+      adapters.r2dbc.schema: public
+      adapters.r2dbc.username: ${POSTGRES_USER}
+      adapters.r2dbc.password: ${POSTGRES_PASSWORD}
+      USUARIOS_API_URL: http://usuarios-service:8081/api/v1/usuarios
+    depends_on:
+      dbsolicitud:
+        condition: service_healthy
+      usuarios-service:
+        condition: service_started
+    ports:
+      - "${SOLICITUDES_PORT}:8082"
+    networks:
+      - crediya-net
+
+volumes:
+  db_data:

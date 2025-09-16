@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="GradleMigrationSettings" migrationVersion="1" />
+  <component name="GradleSettings">
+    <option name="linkedExternalProjectsSettings">
+      <GradleProjectSettings>
+        <option name="externalProjectPath" value="$PROJECT_DIR$/registrar-solicitud-crediya" />
+        <option name="gradleHome" value="$PROJECT_DIR$/../../../../../Gradle/gradle-9.0.0" />
+        <option name="gradleJvm" value="21" />
+        <option name="modules">
+          <set>
+            <option value="$PROJECT_DIR$/registrar-solicitud-crediya" />
+            <option value="$PROJECT_DIR$/registrar-solicitud-crediya/applications/app-service" />
+            <option value="$PROJECT_DIR$/registrar-solicitud-crediya/domain/model" />
+            <option value="$PROJECT_DIR$/registrar-solicitud-crediya/domain/usecase" />
+            <option value="$PROJECT_DIR$/registrar-solicitud-crediya/infrastructure/driven-adapters/jwt-token-service-adapter" />
+            <option value="$PROJECT_DIR$/registrar-solicitud-crediya/infrastructure/driven-adapters/password-service-adapter" />
+            <option value="$PROJECT_DIR$/registrar-solicitud-crediya/infrastructure/driven-adapters/r2dbc-postgresql" />
+            <option value="$PROJECT_DIR$/registrar-solicitud-crediya/infrastructure/driven-adapters/rest-consumer" />
+            <option value="$PROJECT_DIR$/registrar-solicitud-crediya/infrastructure/entry-points/reactive-web" />
+          </set>
+        </option>
+      </GradleProjectSettings>
+      <GradleProjectSettings>
+        <option name="externalProjectPath" value="$PROJECT_DIR$/registrar-usuarios-crediYA" />
+        <option name="gradleHome" value="$PROJECT_DIR$/../../../../../Gradle/gradle-9.0.0" />
+        <option name="gradleJvm" value="21" />
+        <option name="modules">
+          <set>
+            <option value="$PROJECT_DIR$/registrar-usuarios-crediYA" />
+            <option value="$PROJECT_DIR$/registrar-usuarios-crediYA/applications/app-service" />
+            <option value="$PROJECT_DIR$/registrar-usuarios-crediYA/domain/model" />
+            <option value="$PROJECT_DIR$/registrar-usuarios-crediYA/domain/usecase" />
+            <option value="$PROJECT_DIR$/registrar-usuarios-crediYA/infrastructure/driven-adapters/jwt-token-service-adapter" />
+            <option value="$PROJECT_DIR$/registrar-usuarios-crediYA/infrastructure/driven-adapters/password-service-adapter" />
+            <option value="$PROJECT_DIR$/registrar-usuarios-crediYA/infrastructure/driven-adapters/r2dbc-mysql" />
+            <option value="$PROJECT_DIR$/registrar-usuarios-crediYA/infrastructure/driven-adapters/r2dbc-postgresql" />
+            <option value="$PROJECT_DIR$/registrar-usuarios-crediYA/infrastructure/entry-points/reactive-web" />
+          </set>
+        </option>
+      </GradleProjectSettings>
+    </option>
+  </component>
+</project>
