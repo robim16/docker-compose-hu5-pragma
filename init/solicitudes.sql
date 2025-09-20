@@ -140,8 +140,9 @@ ALTER TABLE public.tipo_prestamos ALTER COLUMN id ADD GENERATED ALWAYS AS IDENTI
 --
 
 INSERT INTO public.estados (id, nombre, descripcion) OVERRIDING SYSTEM VALUE VALUES (1, 'Pendiente de revisión', 'Prestamo pendiente de revision');
-INSERT INTO public.estados (id, nombre, descripcion) OVERRIDING SYSTEM VALUE VALUES (2, 'Rechazadas', 'Rechazadas');
-INSERT INTO public.estados (id, nombre, descripcion) OVERRIDING SYSTEM VALUE VALUES (3, 'Revisión manual', 'Revisión manual');
+INSERT INTO public.estados (id, nombre, descripcion) OVERRIDING SYSTEM VALUE VALUES (2, 'Rechazada', 'Rechazada');
+INSERT INTO public.estados (id, nombre, descripcion) OVERRIDING SYSTEM VALUE VALUES (3, 'Aprobada', 'Aprobada');
+INSERT INTO public.estados (id, nombre, descripcion) OVERRIDING SYSTEM VALUE VALUES (4, 'Revisión manual', 'Revisión manual');
 
 
 --

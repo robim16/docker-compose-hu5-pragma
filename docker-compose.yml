@@ -82,6 +82,13 @@ services:
       adapters.r2dbc.username: ${POSTGRES_USER}
       adapters.r2dbc.password: ${POSTGRES_PASSWORD}
       USUARIOS_API_URL: http://usuarios-service:8081/api/v1/usuarios
+
+      AWS_REGION: us-east-1
+      AWS_ACCESS_KEY_ID: ${AWS_ACCESS_KEY_ID}
+      AWS_SECRET_ACCESS_KEY: ${AWS_SECRET_ACCESS_KEY}
+
+      SQS_QUEUE_URL: https://sqs.us-east-1.amazonaws.com/${AWS_ACCOUNT_ID}/solicitudes-queue
+      SQS_QUEUE_NAME: solicitudes-queue
     depends_on:
       dbsolicitud:
         condition: service_healthy
