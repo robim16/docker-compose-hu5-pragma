@@ -98,6 +98,5 @@ services:
       - "${SOLICITUDES_PORT}:8082"
     networks:
       - crediya-net
-
 volumes:
   db_data:
