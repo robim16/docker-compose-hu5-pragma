@@ -114,8 +114,12 @@ services:
 
       SQS_QUEUE_URL: https://sqs.us-east-1.amazonaws.com/${AWS_ACCOUNT_ID}/solicitud-aprobada-queue
       SQS_QUEUE_NAME: solicitud-aprobada-queue
+
+      AWS_SHARED_CREDENTIALS_FILE: /app/credentials
     ports:
       - "${REPORTES_PORT}:8083"
+    volumes:
+      - C:\Crediya\aws\credentials:/app/credentials:ro
     networks:
       - crediya-net
 
